@@ -18,10 +18,10 @@
             {
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("3.feladat");
+            Console.WriteLine("\n3.feladat");
             Console.WriteLine(legtobb(villamok));
 
-            Console.WriteLine("4.feladat");
+            Console.WriteLine("\n4.feladat");
             negyes(villamok);
 
             Console.WriteLine("5. feladat");
@@ -50,19 +50,22 @@
             for (int i = 0; i < villamok.Count; i++)
             {
                 int sum = villamok[i].Ora.Sum();
-                for (int j = 0; j < villamok[i].Ora.Count; j++)
+                if (sum > 0)
                 {
-                    if (sum > 0)
+                    for (int j = 0; j < villamok[i].Ora.Count; j++)
                     {
-                        Console.WriteLine($"{i+1} nap,  óra");
+                        if (villamok[i].Ora[j]>0)
+                        {
+                            Console.WriteLine($"{i+1} nap, {j+1} óra");
+                            break;
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine($"{i+1} nap null");
-                        
-                    }
-                    break;
                 }
+                else
+                {
+                    Console.WriteLine($"{i+1} nap null");      
+                }
+               
             }
         }
 
