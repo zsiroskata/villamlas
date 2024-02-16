@@ -24,10 +24,18 @@
             Console.WriteLine("\n4.feladat");
             negyes(villamok);
 
-            Console.WriteLine("5. feladat");
+            Console.WriteLine("\n5. feladat");
+            Console.WriteLine(otos(villamok));
+
+            Console.WriteLine("\n6.feladat");
+            Console.WriteLine($"{hatos(villamok)}. napon 200-nál kevesebb villámlás volt");
+
+            Console.WriteLine("\n7.feladat");
+            Console.WriteLine($"{hetes(villamok)}. napon nem volt villámlás");
+
         }
 
-		static int legtobb(List<Villamlas> villamok)
+        static int legtobb(List<Villamlas> villamok)
 		{
 			List<int> lista = new List<int>();
 			int max = 0;
@@ -74,10 +82,58 @@
             int szam = 0;
             for (int i = 0; i < villamok.Count; i++)
             {
-                int sum = villamok[i].Ora.Sum();
+                for (int j = 0; j < villamok[i].Ora.Count; j++)
+                {
+                    if (villamok[i].Ora[j] > 0)
+                    {
+                        szam++;
+                    }
+                }
             }
 
 		    return szam;
         }
-	}
+
+        static int hatos(List<Villamlas> villamok) 
+        {
+            List<int> vSzam = new();
+            int nap = 0;
+            for (int i = 0; i < villamok.Count; i++)
+            {
+                vSzam.Add(villamok[i].Ora.Sum());
+                
+            }
+            for (int i = 0; i < vSzam.Count; i++)
+            {
+                if (vSzam[i] < 200)
+                {
+                    nap = i;
+                break;
+                }
+            }
+            return nap+1;
+        }
+
+        static int hetes(List<Villamlas> villamok)
+        {
+            List<int> vSzam = new();
+            int nap = 0;
+            for (int i = 0; i < villamok.Count; i++)
+            {
+                vSzam.Add(villamok[i].Ora.Sum());
+
+            }
+            for (int i = 0; i < vSzam.Count; i++)
+            {
+                if (vSzam[i] == 0)
+                {
+                    nap = i;
+                    break;
+                }
+            }
+            return nap + 1;
+        }
+
+
+    }
 }
